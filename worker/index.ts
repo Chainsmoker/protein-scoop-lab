@@ -1,5 +1,4 @@
 /** Cloudflare Worker entry point for Protein Scoop Lab. */
-import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
 
 interface Env {
@@ -23,33 +22,12 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
-    // 1. Image optimization endpoint
+    // 1. Handle image optimization / passthrough endpoint
     if (url.pathname === "/_vinext/image") {
-      const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
-      return handleImageOptimization(
-        request,
-        {
-          fetchAsset: async (path) => {
-            try {
-              if (env?.ASSETS) {
-                return await env.ASSETS.fetch(new Request(new URL(path, request.url)));
-              }
-              return await fetch(new URL(path, request.url));
-            } catch {
-              return new Response(null, { status: 404 });
-            }
-          },
-          transformImage: env?.IMAGES
-            ? async (body, { width, format, quality }) => {
-                const result = await env.IMAGES.input(body)
-                  .transform(width > 0 ? { width } : {})
-                  .output({ format, quality });
-                return result.response();
-              }
-            : undefined,
-        },
-        allowedWidths
-      );
+      const imageUrl = url.searchParams.get("url");
+      if (imageUrl && imageUrl.startsWith("/")) {
+        return Response.redirect(new URL(imageUrl, request.url).toString(), 302);
+      }
     }
 
     // 2. Redirect root '/' to '/protein-scoop-lab'
@@ -67,7 +45,19 @@ const worker = {
       return handler.fetch(rewrittenRequest, env, ctx);
     }
 
-    // 4. Default handler for all static assets and subpaths
+    // 4. Try serving static assets directly if available
+    if (env?.ASSETS) {
+      try {
+        const assetResponse = await env.ASSETS.fetch(request);
+        if (assetResponse.status !== 404) {
+          return assetResponse;
+        }
+      } catch {
+        // Fall through to router handler
+      }
+    }
+
+    // 5. Default handler for all other routes
     return handler.fetch(request, env, ctx);
   },
 };

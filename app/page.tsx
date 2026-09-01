@@ -274,6 +274,7 @@ export default function Home() {
                 width={1400}
                 height={933}
                 priority
+                unoptimized
                 sizes="(max-width: 900px) 100vw, 52vw"
               />
             </div>
@@ -324,6 +325,7 @@ export default function Home() {
                   alt="Chocolate Peanut Butter Protein Bark"
                   width={380}
                   height={280}
+                  unoptimized
                   sizes="(max-width: 820px) 70vw, 320px"
                 />
                 <span className="card-pill">18g Protein</span>
@@ -345,6 +347,7 @@ export default function Home() {
                   alt="Mocha Protein Ice Cream"
                   width={380}
                   height={280}
+                  unoptimized
                   sizes="(max-width: 820px) 70vw, 320px"
                 />
                 <span className="card-pill">24g Protein</span>
@@ -450,6 +453,7 @@ export default function Home() {
                     alt={recipe.name}
                     width={600}
                     height={450}
+                    unoptimized
                     sizes="(max-width: 600px) 100vw, (max-width: 1050px) 50vw, 33vw"
                   />
                   <div className="recipe-macro-badge">{recipe.macros}</div>
@@ -500,6 +504,7 @@ export default function Home() {
               alt="Strawberry Protein Soft Serve"
               width={700}
               height={700}
+              unoptimized
               sizes="(max-width: 820px) 100vw, 50vw"
             />
             <div className="quote-card float-slow">
@@ -560,6 +565,7 @@ export default function Home() {
                     alt={item.title}
                     width={500}
                     height={380}
+                    unoptimized
                     sizes="(max-width: 600px) 85vw, (max-width: 1050px) 45vw, 25vw"
                   />
                   <span className="preview-macro-chip">{item.macros}</span>
