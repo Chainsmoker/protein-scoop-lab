@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="pslBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a1208"/>
+      <stop offset="100%" stop-color="#100603"/>
+    </linearGradient>
+
+    <!-- Metallic Gold Accent -->
+    <linearGradient id="pslGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffeaae"/>
+      <stop offset="40%" stop-color="#dca95e"/>
+      <stop offset="100%" stop-color="#9a6723"/>
+    </linearGradient>
+
+    <!-- Vanilla Scoop Highlight -->
+    <linearGradient id="pslCream" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#fff5e8"/>
+      <stop offset="100%" stop-color="#e8caa4"/>
+    </linearGradient>
+
+    <!-- Chocolate Drizzle -->
+    <linearGradient id="pslChoc" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#803816"/>
+      <stop offset="100%" stop-color="#3d1808"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Base App Icon Tile -->
+  <rect width="64" height="64" rx="15" fill="url(#pslBg)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="13.5" fill="none" stroke="url(#pslGold)" stroke-width="1.5" stroke-opacity="0.55"/>
+
+  <!-- Glass Foot & Stem -->
+  <path d="M22 53 L42 53 L38 49 L34 44 L30 44 L26 49 Z" fill="url(#pslGold)"/>
+
+  <!-- Coupe Bowl -->
+  <path d="M14 31 C14 44 50 44 50 31 Z" fill="url(#pslGold)"/>
+  <ellipse cx="32" cy="31" rx="18" ry="3.5" fill="#f0d5a8"/>
+
+  <!-- Ice Cream Scoop -->
+  <circle cx="32" cy="22" r="14" fill="url(#pslCream)"/>
+
+  <!-- Chocolate Swirl Ripple -->
+  <path d="M21 23 C24 18 29 19 32 23 C35 27 40 25 43 20" fill="none" stroke="url(#pslChoc)" stroke-width="3" stroke-linecap="round"/>
+
+  <!-- Golden Sparkle / Star (Top Right) -->
+  <path d="M48 9 L49.6 13.8 L54 15.5 L49.6 17.2 L48 22 L46.4 17.2 L42 15.5 L46.4 13.8 Z" fill="url(#pslGold)"/>
+  <circle cx="15" cy="16" r="1.8" fill="#ffeaae"/>
+</svg>
